@@ -1,10 +1,5 @@
-%define	version 0.1.1
-%define	date    20080825
-%define	release %mkrel 1.%{date}.1
-
-%define major 0
-%define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %name
+%define	version 0.1.1.20080825
+%define	release %mkrel 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -13,31 +8,22 @@ Release:   %{release}
 Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
-Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.%{date}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}.%{date}-%{release}-buildroot
-Requires:        %{libname} = %{version}
-BuildRequires:   python-devel gtk2-devel
-BuildRequires:   qt4-devel dbus-devel
+Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+%py_requires -d
+BuildRequires:   gtk2-devel
+BuildRequires:   qt4-devel
+BuildRequires:   dbus-glib-devel
 BuildRequires:   gettext-devel
 
 %description
 IBus is a next generation input framework.
 
-
-%package -n %{libname}
-Summary:    IBus library
-Group:      System/Internationalization
-
-%description -n %{libname}
-IBus library.
-
-%package -n %{develname}
+%package    devel
 Summary:    Headers of %{name} for development
 Group:      Development/C
-Requires:   %{libname} = %{version}
-Provides:   %{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description devel
 IBus development package: static libraries, header files, and the like.
 
 %package    gtk
@@ -53,26 +39,20 @@ IBus gtk module.
 Summary:    IBus qt4 module
 Group:      System/Internationalization
 Requires:   ibus = %{version}
-Requires:   qt4-common
 
 %description qt4
 IBus qt4 module.
 
-
 %prep
-%setup -q -n %{name}-%{version}.%{date}
+%setup -q -n %{name}-%{version}
 
 %build
 %configure2_5x
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-
-# fix for x86_64
-if [ "%{_lib}" == "lib64" ] ; then
-mv %buildroot/usr/lib/python2.5 %buildroot/%{_libdir}
-fi
 
 %find_lang %{name}
 
@@ -93,25 +73,19 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_datadir}/applications/*
 %{_datadir}/ibus/*
 %{_datadir}/pixmaps/*
-
-%files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/python2.5/*
+%{python_sitelib}/*
 
 %files gtk
 %defattr(-,root,root)
-%{_libdir}/libibus-gtk.so.0.0.0
+%{_libdir}/libibus-gtk.so.0*
 %{_libdir}/gtk-2.0/immodules/*.so
 
 %files qt4
 %defattr(-,root,root)
-%{_libdir}/qt4/*
+%{qt4plugins}/inputmethods/*.so
 
-%files -n %{develname}
+%files devel
 %defattr(-,root,root)
 %{_libdir}/libibus-gtk.la
 %{_libdir}/libibus-gtk.so
-%{_libdir}/libibus-gtk.so.0
 %{_libdir}/gtk-2.0/immodules/*.la
-
-
