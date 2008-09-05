@@ -15,6 +15,10 @@ BuildRequires:   gtk2-devel
 BuildRequires:   qt4-devel
 BuildRequires:   dbus-glib-devel
 BuildRequires:   gettext-devel
+Requires:	pygtk2.0
+Requires:	python-dbus >= 0.83.0
+Requires:	pyxdg
+Requires:	gnome-python-gconf
 
 %description
 IBus is a next generation input framework.
