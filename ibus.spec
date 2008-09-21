@@ -1,5 +1,5 @@
 %define	version 0.1.1.20080908
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -19,6 +19,7 @@ Requires:	pygtk2.0
 Requires:	python-dbus >= 0.83.0
 Requires:	pyxdg
 Requires:	gnome-python-gconf
+Suggests:	%{name}-gtk = %version
 
 %description
 IBus is a next generation input framework.
