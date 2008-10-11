@@ -11,6 +11,7 @@ URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
+BuildRequires:   iso-codes
 BuildRequires:   gtk2-devel
 BuildRequires:   qt4-devel
 BuildRequires:   dbus-glib-devel
