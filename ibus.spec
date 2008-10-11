@@ -1,5 +1,5 @@
-%define	version 0.1.1.20080908
-%define	release %mkrel 2
+%define	version 0.1.1.20081006
+%define	release %mkrel 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -83,7 +83,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %files gtk
 %defattr(-,root,root)
 %{_libdir}/libibus-gtk.so.0*
-%{_libdir}/gtk-2.0/immodules/*.so
+%{_libdir}/gtk-2.0/*/immodules/*.so
 
 %files qt4
 %defattr(-,root,root)
@@ -93,4 +93,4 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %defattr(-,root,root)
 %{_libdir}/libibus-gtk.la
 %{_libdir}/libibus-gtk.so
-%{_libdir}/gtk-2.0/immodules/*.la
+%{_libdir}/gtk-2.0/*/immodules/*.la
