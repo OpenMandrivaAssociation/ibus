@@ -1,5 +1,5 @@
 %define	version 0.1.1.20081006
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -57,8 +57,12 @@ IBus qt4 module.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %buildroot
 %makeinstall_std
+
+# install .desktop files
+echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus.desktop
+echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus-setup.desktop
 
 %find_lang %{name}
 
