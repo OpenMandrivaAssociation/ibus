@@ -1,5 +1,5 @@
 %define	version 0.1.1.20081006
-%define	release %mkrel 2
+%define	release %mkrel 3
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -9,6 +9,7 @@ Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch0:    ibus-0.1.1-defaults-to-auto-hide.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:   iso-codes
@@ -36,7 +37,7 @@ IBus development package: static libraries, header files, and the like.
 Summary:    IBus gtk module
 Group:      System/Internationalization
 Requires:   ibus = %{version}
-Requires(post):	gtk+2.0
+Requires(post):	gtk+2.0, ibus = %{version}
 Requires(postun): gtk+2.0
 
 %description gtk
@@ -52,6 +53,7 @@ IBus qt4 module.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p0
 
 %build
 %configure2_5x
