@@ -1,5 +1,5 @@
 %define	version 0.1.1.20081016
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -37,7 +37,7 @@ IBus development package: static libraries, header files, and the like.
 Summary:    IBus gtk module
 Group:      System/Internationalization
 Requires:   ibus = %{version}
-Requires(post):	gtk+2.0, ibus = %{version}
+Requires(post):	gtk+2.0
 Requires(postun): gtk+2.0
 
 %description gtk
