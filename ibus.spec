@@ -1,5 +1,5 @@
 %define	version 1.1.0.20090205
-%define	release %mkrel 2
+%define	release %mkrel 3
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -79,6 +79,9 @@ rm -rf %buildroot
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus.desktop
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus-setup.desktop
 
+rm -f %buildroot%_libdir/*.la
+rm -f %buildroot%_libdir/gtk-2.0/*/immodules/*.la
+
 %find_lang %{name}
 
 %clean
@@ -115,8 +118,6 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %files devel
 %defattr(-,root,root)
 %{_includedir}/ibus-1.0
-%{_libdir}/gtk-2.0/*/immodules/*.la
 %{_libdir}/*.so
-%{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/gtk-doc/html/ibus
