@@ -1,5 +1,5 @@
 %define	version 1.1.0.20090205
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -33,6 +33,7 @@ IBus is a next generation input framework.
 %package    devel
 Summary:    Headers of %{name} for development
 Group:      Development/C
+Requires:   %{name} = %{version}-%{release}
 
 %description devel
 IBus development package: static libraries, header files, and the like.
