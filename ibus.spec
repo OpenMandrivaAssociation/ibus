@@ -1,5 +1,5 @@
-%define	version 0.1.1.20081023
-%define	release %mkrel 3
+%define	version 1.1.0.20090205
+%define	release %mkrel 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -9,15 +9,18 @@ Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch0:    ibus-0.1.1-defaults-to-auto-hide.patch
+Patch0:    ibus-1.1.0-defaults-to-auto-hide.patch
 Patch1:    ibus-0.1.1-lower-qt-version-dep.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
-BuildRequires:   iso-codes
-BuildRequires:   gtk2-devel
-BuildRequires:   qt4-devel
-BuildRequires:   dbus-glib-devel
-BuildRequires:   gettext-devel
+BuildRequires:  iso-codes
+BuildRequires:  gtk2-devel
+BuildRequires:  qt4-devel
+BuildRequires:  dbus-glib-devel
+BuildRequires:  gettext-devel
+BuildRequires:	python-gobject-devel >= 2.15
+BuildRequires:	libGConf2-devel
+Requires:	python-gobject >= 2.15
 Requires:	pygtk2.0
 Requires:	python-dbus >= 0.83.0
 Requires:	pyxdg
@@ -91,14 +94,17 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/*
-%{_datadir}/applications/*
+%{_libdir}/libibus.so.0*
+%{_libexecdir}/ibus-gconf
+%{_libexecdir}/ibus-x11
+%{_libexecdir}/ibus-ui-gtk
+%{_datadir}/applications/*.desktop
 %{_datadir}/ibus/*
 %{_datadir}/pixmaps/*
 %{python_sitelib}/*
 
 %files gtk
 %defattr(-,root,root)
-%{_libdir}/libibus-gtk.so.0*
 %{_libdir}/gtk-2.0/*/immodules/*.so
 
 %files qt4
@@ -107,6 +113,9 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 
 %files devel
 %defattr(-,root,root)
-%{_libdir}/libibus-gtk.la
-%{_libdir}/libibus-gtk.so
+%{_includedir}/ibus-1.0
 %{_libdir}/gtk-2.0/*/immodules/*.la
+%{_libdir}/*.so
+%{_libdir}/*.la
+%{_libdir}/pkgconfig/*.pc
+%{_datadir}/gtk-doc/html/ibus
