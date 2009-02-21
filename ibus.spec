@@ -1,4 +1,4 @@
-%define	version 1.1.0.20090211
+%define	version 1.1.0.20090217
 %define	release %mkrel 1
 
 Name:      ibus
@@ -11,6 +11,7 @@ URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
 Patch0:    ibus-1.1.0-defaults-to-auto-hide.patch
 Patch1:    ibus-0.1.1-lower-qt-version-dep.patch
+Patch2:		ibus-1.1.0-fix-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:  iso-codes
@@ -59,6 +60,7 @@ IBus qt4 module.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p0
+%patch2 -p0
 %if %mdkversion < 200900
 %patch1 -p0
 %endif
