@@ -12,6 +12,7 @@ Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
 Patch0:    ibus-1.1.0-defaults-to-auto-hide.patch
 Patch1:    ibus-0.1.1-lower-qt-version-dep.patch
 Patch2:		ibus-1.1.0-fix-desktop.patch
+Patch3:		ibus-1.1.0-enalbe-qt4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:  iso-codes
@@ -61,16 +62,17 @@ IBus qt4 module.
 %setup -q -n %{name}-%{version}
 %patch0 -p0
 %patch2 -p0
+%patch3 -p0
 %if %mdkversion < 200900
 %patch1 -p0
 %endif
 
 %build
 %if %mdkversion < 200900
-./autogen.sh
 export PKG_CONFIG_PATH=%_libdir/pkgconfig:%qt4lib/pkgconfig
 %endif
-%configure2_5x
+autoreconf -fi
+%configure2_5x --enable-qt4-immodule
 %make
 
 %install
