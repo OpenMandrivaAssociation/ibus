@@ -106,6 +106,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_datadir}/ibus/*
 %{_datadir}/pixmaps/*
 %{python_sitelib}/*
+%exclude %{_sysconfdir}/xdg/autostart/ibus.desktop
 
 %files gtk
 %defattr(-,root,root)
