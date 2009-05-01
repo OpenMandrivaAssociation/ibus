@@ -1,4 +1,4 @@
-%define	version 1.1.0.20090311
+%define	version 1.1.0.20090423
 %define	release %mkrel 1
 
 Name:      ibus
@@ -67,7 +67,7 @@ IBus qt4 module.
 %if %mdkversion < 200900
 export PKG_CONFIG_PATH=%_libdir/pkgconfig:%qt4lib/pkgconfig
 %endif
-autoreconf -fi
+./autogen.sh
 %configure2_5x --enable-qt4-immodule \
 	--disable-dbus-python-check --disable-iso-codes-check
 %make
