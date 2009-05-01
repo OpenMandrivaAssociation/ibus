@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk2-devel
 BuildRequires:  qt4-devel
 BuildRequires:  dbus-glib-devel
-BuildRequires:  gettext-devel intltool
+BuildRequires:  gettext-devel intltool gtk-doc
 BuildRequires:	python-gobject-devel >= 2.15
 BuildRequires:	libGConf2-devel
 Requires:	python-gobject >= 2.15
