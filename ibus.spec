@@ -1,4 +1,4 @@
-%define	version 1.1.0.20090423
+%define	version 1.1.0.20090508
 %define	release %mkrel 1
 
 Name:      ibus
