@@ -1,4 +1,4 @@
-%define	version 1.1.0.20090531
+%define	version 1.1.0.20090609
 %define	release %mkrel 1
 
 Name:      ibus
@@ -22,7 +22,7 @@ BuildRequires:  gettext-devel intltool gtk-doc
 BuildRequires:	python-gobject-devel >= 2.15
 BuildRequires:	libGConf2-devel
 Requires:	python-gobject >= 2.15
-Requires:	pygtk2.0
+Requires:	pygtk2.0 pygtk2.0-libglade
 Requires:	python-dbus >= 0.83.0
 Requires:	pyxdg
 Requires:	gnome-python-gconf
