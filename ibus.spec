@@ -1,4 +1,4 @@
-%define	version 1.1.0.20090612
+%define	version 1.2.0.20090723
 %define	release %mkrel 1
 
 Name:      ibus
@@ -9,12 +9,9 @@ Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch1:    ibus-0.1.1-lower-qt-version-dep.patch
-Patch3:		ibus-1.1.0-enalbe-qt4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:  gtk2-devel
-BuildRequires:  qt4-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:	python-dbus >= 0.83.0
 BuildRequires:	iso-codes
@@ -50,27 +47,11 @@ Requires(postun): gtk+2.0
 %description gtk
 IBus gtk module.
 
-%package    qt4
-Summary:    IBus qt4 module
-Group:      System/Internationalization
-Requires:   ibus = %{version}
-
-%description qt4
-IBus qt4 module.
-
 %prep
 %setup -q -n %{name}-%{version}
-%patch3 -p0
-%if %mdkversion < 200900
-%patch1 -p0
-%endif
 
 %build
-%if %mdkversion < 200900
-export PKG_CONFIG_PATH=%_libdir/pkgconfig:%qt4lib/pkgconfig
-%endif
-./autogen.sh
-%configure2_5x --enable-qt4-immodule \
+%configure2_5x \
 	--disable-dbus-python-check --disable-iso-codes-check
 %make
 
@@ -101,7 +82,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_bindir}/*
-%{_libdir}/libibus.so.0*
+%{_libdir}/libibus.so.1*
 %{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk
@@ -114,10 +95,6 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %files gtk
 %defattr(-,root,root)
 %{_libdir}/gtk-2.0/*/immodules/*.so
-
-%files qt4
-%defattr(-,root,root)
-%{qt4plugins}/inputmethods/*.so
 
 %files devel
 %defattr(-,root,root)
