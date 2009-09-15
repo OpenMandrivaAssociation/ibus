@@ -89,6 +89,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_datadir}/applications/*.desktop
 %{_datadir}/ibus/*
 %{_datadir}/pixmaps/*
+%{_iconsdir}/hicolor/*/status/*
 %{python_sitelib}/*
 %exclude %{_sysconfdir}/xdg/autostart/ibus.desktop
 
