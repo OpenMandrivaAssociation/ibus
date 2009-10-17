@@ -23,6 +23,8 @@ Requires:	pygtk2.0 pygtk2.0-libglade
 Requires:	python-dbus >= 0.83.0
 Requires:	pyxdg
 Requires:	gnome-python-gconf
+Requires(post):	GConf2
+Requires(preun): GConf2
 Requires:	iso-codes
 Suggests:	%{name}-gtk = %version
 
