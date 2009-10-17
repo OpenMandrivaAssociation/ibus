@@ -1,5 +1,5 @@
-%define	version 1.2.0.20090927
-%define	release %mkrel 2
+%define	version 1.2.0.20091014
+%define	release %mkrel 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -71,6 +71,9 @@ rm -f %buildroot%_libdir/gtk-2.0/*/immodules/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%preun
+%preun_uninstall_gconf_schemas ibus
+
 %post gtk
 gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 
@@ -88,8 +91,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_libexecdir}/ibus-ui-gtk
 %{_datadir}/applications/*.desktop
 %{_datadir}/ibus/*
-%{_datadir}/pixmaps/*
-%{_iconsdir}/hicolor/*/status/*
+%{_iconsdir}/*/*/*/*
 %{python_sitelib}/*
 %exclude %{_sysconfdir}/xdg/autostart/ibus.desktop
 
