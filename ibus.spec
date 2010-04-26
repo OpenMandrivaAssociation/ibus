@@ -1,5 +1,5 @@
 %define	version 1.3.2
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -21,11 +21,13 @@ BuildRequires:	libGConf2-devel
 Requires:	python-gobject >= 2.15
 Requires:	pygtk2.0 pygtk2.0-libglade
 Requires:	python-dbus >= 0.83.0
+Requires:	python-notify
 Requires:	pyxdg
 Requires:	gnome-python-gconf
 Requires(post):	GConf2
 Requires(preun): GConf2
 Requires:	iso-codes
+Requires:	librsvg
 Suggests:	%{name}-gtk = %version
 
 %description
