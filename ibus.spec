@@ -1,5 +1,5 @@
-%define	version 1.2.1
-%define	release %mkrel 2
+%define	version 1.3.2
+%define	release %mkrel 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -54,7 +54,7 @@ IBus gtk module.
 
 %build
 %configure2_5x \
-	--disable-dbus-python-check --disable-iso-codes-check
+	--disable-dbus-python-check
 %make
 
 %install
@@ -87,7 +87,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_bindir}/*
-%{_libdir}/libibus.so.1*
+%{_libdir}/libibus.so.2*
 %{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk
