@@ -1,4 +1,4 @@
-%define	version 1.3.3
+%define	version 1.3.5
 %define	release %mkrel 1
 
 Name:      ibus
@@ -18,6 +18,7 @@ BuildRequires:	iso-codes
 BuildRequires:  gettext-devel intltool gtk-doc
 BuildRequires:	python-gobject-devel >= 2.15
 BuildRequires:	libGConf2-devel
+BuildRequires:	gobject-introspection-devel
 Requires:	python-gobject >= 2.15
 Requires:	pygtk2.0 pygtk2.0-libglade
 Requires:	python-dbus >= 0.83.0
@@ -90,6 +91,7 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_bindir}/*
 %{_libdir}/libibus.so.2*
+%{_libdir}/girepository-1.0/*.typelib
 %{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk
@@ -109,3 +111,5 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/gtk-doc/html/ibus
+%{_datadir}/gir-1.0/*.gir
+%{_datadir}/vala/vapi/*.vapi
