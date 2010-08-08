@@ -1,5 +1,5 @@
 %define	version 1.3.6
-%define	release %mkrel 2
+%define	release %mkrel 4
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -9,6 +9,7 @@ Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch0:    ibus-1.3.6-mdv-customize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:  gtk2-devel
@@ -53,6 +54,7 @@ IBus gtk module.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p0
 
 %build
 %configure2_5x \
