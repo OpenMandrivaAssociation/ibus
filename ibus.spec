@@ -1,5 +1,5 @@
 %define	version 1.3.8
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -71,6 +71,7 @@ echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus-setup.desktop
 
 rm -f %buildroot%_libdir/*.la
 rm -f %buildroot%_libdir/gtk-2.0/*/immodules/*.la
+rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
 
 %find_lang %{name}
 
@@ -100,7 +101,6 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
 %{python_sitelib}/*
-%exclude %{_sysconfdir}/xdg/autostart/ibus.desktop
 
 %files gtk
 %defattr(-,root,root)
