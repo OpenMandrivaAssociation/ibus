@@ -1,5 +1,5 @@
 %define	version 1.3.9
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -13,20 +13,20 @@ Patch0:    ibus-1.3.6-mdv-customize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
 BuildRequires:  gtk2-devel
+BuildRequires:	gtk+3-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:	python-dbus >= 0.83.0
 BuildRequires:	iso-codes
 BuildRequires:  gettext-devel intltool gtk-doc
 BuildRequires:	python-gobject-devel >= 2.15
-BuildRequires:	libGConf2-devel
+BuildRequires:	libGConf2-devel >= 2.12
+BuildRequires:	GConf2
 BuildRequires:	gobject-introspection-devel
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
 Requires:	python-notify
 Requires:	pyxdg
-Requires(post):	GConf2
-Requires(preun): GConf2
 Requires:	iso-codes
 Requires:	librsvg
 Suggests:	%{name}-gtk = %version
@@ -52,12 +52,21 @@ Requires(postun): gtk+2.0
 %description gtk
 IBus gtk module.
 
+%package    gtk3
+Summary:    IBus gtk3 module
+Group:      System/Internationalization
+Requires:   ibus = %{version}
+
+%description gtk3
+IBus gtk module.
+
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p0
 
 %build
 %configure2_5x \
+	--enable-gtk3 \
 	--disable-dbus-python-check
 %make
 
@@ -70,7 +79,7 @@ echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus.desktop
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus-setup.desktop
 
 rm -f %buildroot%_libdir/*.la
-rm -f %buildroot%_libdir/gtk-2.0/*/immodules/*.la
+rm -f %buildroot%_libdir/gtk-*/*/immodules/*.la
 rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
 
 %find_lang %{name}
@@ -105,6 +114,10 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %files gtk
 %defattr(-,root,root)
 %{_libdir}/gtk-2.0/*/immodules/*.so
+
+%files gtk3
+%defattr(-,root,root)
+%{_libdir}/gtk-3.0/*/immodules/*.so
 
 %files devel
 %defattr(-,root,root)
