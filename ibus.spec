@@ -1,5 +1,5 @@
 %define	version 1.3.9
-%define	release %mkrel 2
+%define	release %mkrel 3
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -34,10 +34,21 @@ Suggests:	%{name}-gtk = %version
 %description
 IBus is a next generation input framework.
 
+%define major 2
+%define libname %mklibname %name %major
+
+%package -n %libname
+Summary:    Shared libraries for %{name}
+Group:      System/Internationalization
+Conflicts:  ibus < 1.3.9-3
+
+%description -n %libname
+IBus shared libraries.
+
 %package    devel
 Summary:    Headers of %{name} for development
 Group:      Development/C
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{libname} = %{version}-%{release}
 
 %description devel
 IBus development package: static libraries, header files, and the like.
@@ -46,8 +57,6 @@ IBus development package: static libraries, header files, and the like.
 Summary:    IBus gtk module
 Group:      System/Internationalization
 Requires:   ibus = %{version}
-Requires(post):	gtk+2.0
-Requires(postun): gtk+2.0
 
 %description gtk
 IBus gtk module.
@@ -90,19 +99,11 @@ rm -rf $RPM_BUILD_ROOT
 %preun
 %preun_uninstall_gconf_schemas ibus
 
-%post gtk
-gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
-
-%postun gtk
-gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
-
 %files -f %name.lang
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_bindir}/*
-%{_libdir}/libibus.so.2*
-%{_libdir}/girepository-1.0/*.typelib
 %{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk
@@ -110,6 +111,12 @@ gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules.%_lib
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
 %{python_sitelib}/*
+
+%files -n %{libname}
+%defattr(-,root,root)
+%{_libdir}/libibus.so.%{major}
+%{_libdir}/libibus.so.%{major}.*
+%{_libdir}/girepository-1.0/*.typelib
 
 %files gtk
 %defattr(-,root,root)
