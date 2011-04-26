@@ -1,5 +1,5 @@
 %define	version 1.3.9
-%define	release %mkrel 3
+%define	release %mkrel 4
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -88,6 +88,10 @@ rm -rf %buildroot
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus.desktop
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus-setup.desktop
 
+# install rpm macro
+mkdir -p %buildroot%{_sysconfdir}/rpm/macros.d/
+install -m0644 %{SOURCE1} %buildroot%{_sysconfdir}/rpm/macros.d/%name.macros
+
 rm -f %buildroot%_libdir/*.la
 rm -f %buildroot%_libdir/gtk-*/*/immodules/*.la
 rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
@@ -135,3 +139,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gtk-doc/html/ibus
 %{_datadir}/gir-1.0/*.gir
 %{_datadir}/vala/vapi/*.vapi
+%{_sysconfdir}/rpm/macros.d/%name.macros
