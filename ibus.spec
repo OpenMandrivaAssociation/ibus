@@ -9,7 +9,7 @@ Group:     System/Internationalization
 License:   GPLv2+
 URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
-Source1:   ibus.macro
+Source1:   ibus.macros
 Patch0:    ibus-1.3.6-mdv-customize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %py_requires -d
