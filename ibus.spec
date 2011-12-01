@@ -99,7 +99,7 @@ rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
 %find_lang %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %preun
 %preun_uninstall_gconf_schemas ibus
