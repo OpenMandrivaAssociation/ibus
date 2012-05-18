@@ -76,6 +76,10 @@ IBus gtk module.
 %patch0 -p0
 
 %build
+
+# fails to find ibus pkgconfig (if ibus itself not already installed) without this line
+export PKG_CONFIG_PATH=`pwd`
+
 %configure2_5x \
 	--enable-gtk3 \
 	--disable-dbus-python-check
