@@ -1,5 +1,5 @@
-%define	version 1.3.9
-%define	release %mkrel 6
+%define	version 1.4.1
+%define	release 1
 
 Name:      ibus
 Summary:   A next generation input framework
@@ -20,7 +20,7 @@ BuildRequires:	python-dbus >= 0.83.0
 BuildRequires:	iso-codes
 BuildRequires:  gettext-devel intltool gtk-doc
 BuildRequires:	python-gobject-devel >= 2.15
-BuildRequires:	libGConf2-devel >= 2.12
+BuildRequires:  pkgconfig(gconf-2.0)
 BuildRequires:	GConf2
 BuildRequires:	gobject-introspection-devel
 Requires:	python-gobject >= 2.15
@@ -35,8 +35,9 @@ Suggests:	%{name}-gtk = %version
 %description
 IBus is a next generation input framework.
 
-%define major 2
-%define libname %mklibname %name %major
+%define major 0
+%define api_version 1
+%define libname %mklibname %{name}- %{api_version} %{major}
 
 %package -n %libname
 Summary:    Shared libraries for %{name}
@@ -80,6 +81,8 @@ IBus gtk module.
 	--disable-dbus-python-check
 %make
 
+%find_lang ibus10
+
 %install
 rm -rf %buildroot
 %makeinstall_std
@@ -96,7 +99,6 @@ rm -f %buildroot%_libdir/*.la
 rm -f %buildroot%_libdir/gtk-*/*/immodules/*.la
 rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
 
-%find_lang %{name}
 
 %clean
 rm -rf %{buildroot}
@@ -104,7 +106,7 @@ rm -rf %{buildroot}
 %preun
 %preun_uninstall_gconf_schemas ibus
 
-%files -f %name.lang
+%files -f ibus10.lang
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/ibus.schemas
@@ -119,8 +121,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libibus.so.%{major}
-%{_libdir}/libibus.so.%{major}.*
+%{_libdir}/libibus-1.0.so.%{major}*
 %{_libdir}/girepository-1.0/*.typelib
 
 %files gtk
@@ -139,4 +140,5 @@ rm -rf %{buildroot}
 %{_datadir}/gtk-doc/html/ibus
 %{_datadir}/gir-1.0/*.gir
 %{_datadir}/vala/vapi/*.vapi
+%{_datadir}/vala/vapi/*.deps
 %{_sysconfdir}/rpm/macros.d/%name.macros
