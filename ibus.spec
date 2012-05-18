@@ -85,11 +85,11 @@ export PKG_CONFIG_PATH=`pwd`
 	--disable-dbus-python-check
 %make
 
-%find_lang ibus10
-
 %install
 rm -rf %buildroot
 %makeinstall_std
+
+%find_lang ibus10
 
 # install .desktop files
 echo "NoDisplay=true" >> %buildroot%{_datadir}/applications/ibus.desktop
