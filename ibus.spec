@@ -43,6 +43,19 @@ Conflicts:	ibus < 1.3.9-3
 %description -n	%{libname}
 IBus shared libraries.
 
+%define girname %mklibname ibus-gir %{api_ver}
+
+%package -n	%{girname}
+Summary:	GObject introspection interface library for ibus
+Group:		System/Internationalization
+Requires:	%{libname} = %{version}
+Conflicts:	%{libname} < 1.4.1-2
+Conflicts:	%{_lib}ibus2
+Conflicts:	%{_lib}ibus1.0_0 < 1.4.0-2
+
+%description -n	%{girname}
+GObject introspection interface library for ibus.
+
 %package	devel
 Summary:	Headers of %{name} for development
 Group:		Development/C
@@ -112,6 +125,8 @@ rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/ibus.desktop
 
 %files -n %{libname}
 %{_libdir}/libibus-1.0.so.%{major}*
+
+%files -n %{girname}
 %{_libdir}/girepository-1.0/*.typelib
 
 %files gtk
