@@ -99,7 +99,7 @@ rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/ibus.desktop
 %preun_uninstall_gconf_schemas ibus
 
 %files -f ibus10.lang
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_bindir}/*
 %{_libexecdir}/ibus-gconf
