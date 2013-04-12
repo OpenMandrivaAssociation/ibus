@@ -1,5 +1,5 @@
-%define	version 1.4.99.20120917
-%define	release %mkrel 1
+%define	version 1.5.1
+%define	release 1
 
 Name:      ibus
 Summary:   A next generation input framework
