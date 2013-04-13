@@ -24,6 +24,7 @@ BuildRequires:	libGConf2-devel >= 2.12
 BuildRequires:	GConf2
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	pkgconfig(dconf)
+BuildRequires:	dconf
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
