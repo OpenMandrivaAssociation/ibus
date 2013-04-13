@@ -1,0 +1,11 @@
+--- ibus-1.5.1/src/ibusfactory.c.orig	2013-04-13 07:45:04.083851979 +0100
++++ ibus-1.5.1/src/ibusfactory.c	2013-04-13 07:46:02.990848538 +0100
+@@ -290,7 +290,7 @@
+             gchar *error_message = g_strdup_printf ("Can not fond engine %s", engine_name);
+             g_dbus_method_invocation_return_error (invocation,
+                                                    G_DBUS_ERROR,
+-                                                   G_DBUS_ERROR_FAILED,
++                                                   G_DBUS_ERROR_FAILED, "%s",
+                                                    error_message);
+             g_free (error_message);
+         }

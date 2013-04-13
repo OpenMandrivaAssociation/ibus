@@ -11,6 +11,7 @@ URL:       http://code.google.com/p/ibus/
 Source0:   http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
 Source1:   ibus.macros
 Patch0:    ibus-1.3.6-mdv-customize.patch
+Patch1:	   ibus-1.5.1-strfmt.patch
 %py_requires -d
 BuildRequires:  gtk2-devel
 BuildRequires:	gtk+3-devel
@@ -73,6 +74,7 @@ IBus gtk module.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p0
+%patch1 -p1
 
 %build
 %configure2_5x \
