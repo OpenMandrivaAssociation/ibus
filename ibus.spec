@@ -41,7 +41,8 @@ Suggests:	%{name}-gtk = %version
 IBus is a next generation input framework.
 
 %define major 5
-%define libname %mklibname %name %major
+%define api 1.0
+%define libname %mklibname %name %api %major
 
 %package -n %libname
 Summary:    Shared libraries for %{name}
