@@ -26,6 +26,7 @@ BuildRequires:	gobject-introspection-devel
 BuildRequires:	pkgconfig(dconf)
 BuildRequires:	dconf
 BuildRequires:	vala
+BuildRequires:	vala-tools
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
