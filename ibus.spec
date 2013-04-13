@@ -81,7 +81,7 @@ IBus gtk module.
 %configure2_5x \
 	--enable-gtk3 \
 	--disable-dbus-python-check \
-	--enable-python-library
+	--enable-python-library --enable-gconf
 %make
 
 %install
