@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(dconf)
 BuildRequires:	dconf
 BuildRequires:	vala
 BuildRequires:	vala-tools
+BuildRequires:	pkgconfig(vapigen)
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
