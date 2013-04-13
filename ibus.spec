@@ -113,14 +113,19 @@ rm -f %buildroot%{_sysconfdir}/xdg/autostart/ibus.desktop
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_sysconfdir}/bash_completion.d/ibus.bash
 %{_sysconfdir}/gconf/schemas/ibus.schemas
+%{_datadir}/glib-2.0/schemas/org.freedesktop.ibus.gschema.xml
+%{_sysconfdir}/dconf/profile/ibus
+%{_sysconfdir}/dconf/db/ibus.d
 %{_bindir}/*
 %{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk*
 %{_libexecdir}/ibus-engine-simple
 %{_datadir}/applications/*.desktop
+%{_datadir}/GConf/gsettings/ibus.convert
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
+%{_libdir}/ibus-dconf
 %{python_sitelib}/*
 
 %files -n %{libname}
