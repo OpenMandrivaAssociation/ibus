@@ -66,6 +66,7 @@ GObject Introspection interface description for %{name}.
 Summary:	Headers of %{name} for development
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{_lib}ibus1.0_5-devel < 1.5.2-1
 
