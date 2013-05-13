@@ -1,5 +1,5 @@
---- data/ibus.schemas.in.customize	2010-08-08 17:46:19.000000000 +0200
-+++ data/ibus.schemas.in	2010-08-08 18:10:03.000000000 +0200
+--- ./data/ibus.schemas.in.customize	2010-08-08 17:46:19.000000000 +0200
++++ ./data/ibus.schemas.in	2010-08-08 18:10:03.000000000 +0200
 @@ -32,7 +32,7 @@
        <owner>ibus</owner>
        <type>list</type>
