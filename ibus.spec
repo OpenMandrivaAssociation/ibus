@@ -40,7 +40,6 @@ Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
 Requires:	python-notify
 Requires:	pyxdg
-%py_requires -d
 Suggests:	%{name}-gtk = %{version}
 
 %description
@@ -100,6 +99,7 @@ IBus gtk module.
 	--enable-python-library \
 	--enable-gconf \
 	--enable-vala=yes
+
 %make
 
 %install
