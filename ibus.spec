@@ -6,18 +6,15 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.2
-Release:	8
+Version:	1.5.9
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
-Url:		http://code.google.com/p/ibus/
-Source0:	http://ibus.googlecode.com/files/%{name}-%{version}.tar.gz
+Url:		https://github.com/ibus/ibus/
+Source0:	https://github.com/ibus/ibus/releases/download/%{version}/%{name}-%{version}.tar.gz
 Source1:	ibus.macros
-Patch0:		ibus-1.3.6-mdv-customize.patch
-Patch1:		ibus-1.5.1-strfmt.patch
 
 BuildRequires:	dconf
-BuildRequires:	GConf2
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	iso-codes
@@ -27,12 +24,12 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(dbus-python)
 BuildRequires:	pkgconfig(dconf)
-BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(vapigen)
+BuildRequires:	python-gi 
 Requires:	iso-codes
 Requires:	librsvg
 Requires:	python-gobject >= 2.15
@@ -96,9 +93,9 @@ IBus gtk module.
 %configure2_5x \
 	--enable-gtk3 \
 	--disable-dbus-python-check \
-	--enable-python-library \
-	--enable-gconf \
-	--enable-vala=yes
+	--enable-vala=yes \
+	--disable-gconf \
+	--enable-dconf 
 
 %make
 
@@ -107,7 +104,6 @@ IBus gtk module.
 %find_lang %{name}10
 
 # install .desktop files
-echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/ibus.desktop
 echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/ibus-setup.desktop
 
 # install rpm macro
@@ -115,18 +111,17 @@ mkdir -p %{buildroot}%{_sysconfdir}/rpm/macros.d/
 install -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/ibus.desktop
+rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 
 %preun
 %preun_uninstall_gconf_schemas ibus
 
 %files -f %{name}10.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{_sysconfdir}/gconf/schemas/ibus.schemas
 %{_sysconfdir}/dconf/profile/ibus
 %{_sysconfdir}/dconf/db/ibus.d
 %{_bindir}/*
 %{_libexecdir}/ibus-dconf
-%{_libexecdir}/ibus-gconf
 %{_libexecdir}/ibus-x11
 %{_libexecdir}/ibus-ui-gtk*
 %{_libexecdir}/ibus-engine-simple
@@ -136,7 +131,8 @@ rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/ibus.desktop
 %{_datadir}/glib-2.0/schemas/org.freedesktop.ibus.gschema.xml
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
-%{python_sitelib}/*
+%{_datadir}/man/man1/*
+%{py3_platsitedir}/gi/overrides/IBus.*
 
 %files -n %{libname}
 %{_libdir}/libibus-%{api}.so.%{major}*
