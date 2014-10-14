@@ -1,2 +1,4 @@
+removed_sources:
+  ibus-1.5.2.tar.gz: a7e1695731b4c954fa8897d091e6dda64e08b28c
 sources:
-  "ibus-1.5.2.tar.gz": a7e1695731b4c954fa8897d091e6dda64e08b28c
+  ibus-1.5.9.tar.gz: 6ba4ba4056f7bff252b6d0622914828e947092a7
