@@ -7,7 +7,7 @@
 Summary:	A next generation input framework
 Name:		ibus
 Version:	1.5.9
-Release:	6
+Release:	7
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -38,6 +38,7 @@ Requires:	python-dbus >= 0.83.0
 Requires:	pygtk2.0
 Requires:	python-notify
 Requires:	pyxdg
+Requires:	typelib(IBus)
 Suggests:	%{name}-gtk = %{version}
 
 %description
