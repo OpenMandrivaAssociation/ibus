@@ -3,11 +3,12 @@
 %define libname %mklibname %{name} %{api} %{major}
 %define girname %mklibname %{name}-gir %{api}
 %define devname %mklibname %{name} -d
+%define _disable_rebuild_configure 1
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.9
-Release:	7
+Version:	1.5.13
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
