@@ -1,3 +1,5 @@
+%bcond_with python2
+
 %define api	1.0
 %define major	5
 %define libname %mklibname %{name} %{api} %{major}
@@ -32,7 +34,9 @@ BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
+%if %{with python2}
 BuildRequires:	pkgconfig(python2)
+%endif
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	python-gi 
 Requires:	iso-codes
@@ -185,6 +189,8 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{py3_platsitedir}/gi/overrides/IBus.*
 %{py3_platsitedir}/gi/overrides/__pycache__
 
+%if %{with python2}
 %files -n python2-ibus
 %{py2_platsitedir}/gi/overrides/IBus.*
 %exclude %{py2_platsitedir}/gi/overrides/__pycache__
+%endif
