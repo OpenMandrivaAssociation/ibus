@@ -9,8 +9,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.18
-Release:	3
+Version:	1.5.20
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -119,12 +119,13 @@ IBus gtk module.
 	--disable-dbus-python-check \
 	--enable-vala=yes \
 	--disable-gconf \
-	--enable-dconf 
+	--enable-dconf \
+	--enable-wayland
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 %find_lang %{name}10
 
 # install .desktop files
