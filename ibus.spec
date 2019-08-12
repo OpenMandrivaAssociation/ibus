@@ -9,8 +9,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.18
-Release:	3
+Version:	1.5.20
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
@@ -119,12 +120,13 @@ IBus gtk module.
 	--disable-dbus-python-check \
 	--enable-vala=yes \
 	--disable-gconf \
-	--enable-dconf 
+	--enable-dconf \
+	--enable-wayland
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 %find_lang %{name}10
 
 # install .desktop files
@@ -150,6 +152,7 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_libexecdir}/ibus-engine-simple
 %{_libexecdir}/ibus-portal
 %{_libexecdir}/ibus-ui-emojier
+%{_libexecdir}/ibus-wayland
 %{_datadir}/applications/*.desktop
 %{_datadir}/bash-completion/completions/ibus.bash
 %{_datadir}/GConf/gsettings/ibus.convert
@@ -159,6 +162,7 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
 %{_datadir}/man/man1/*
+%{_datadir}/man/man5/*
 %{_datadir}/man/man7/*
 
 %files -n %{libname}
