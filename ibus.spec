@@ -152,6 +152,7 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_libexecdir}/ibus-engine-simple
 %{_libexecdir}/ibus-portal
 %{_libexecdir}/ibus-ui-emojier
+%{_libexecdir}/ibus-wayland
 %{_datadir}/applications/*.desktop
 %{_datadir}/bash-completion/completions/ibus.bash
 %{_datadir}/GConf/gsettings/ibus.convert
@@ -161,6 +162,7 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
 %{_datadir}/man/man1/*
+%{_datadir}/man/man5/*
 %{_datadir}/man/man7/*
 
 %files -n %{libname}
