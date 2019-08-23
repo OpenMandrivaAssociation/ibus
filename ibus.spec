@@ -9,7 +9,7 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.20
+Version:	1.5.21
 Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
@@ -164,6 +164,7 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_datadir}/man/man1/*
 %{_datadir}/man/man5/*
 %{_datadir}/man/man7/*
+%{_datadir}/gettext/its/ibus.*
 
 %files -n %{libname}
 %{_libdir}/libibus-%{api}.so.%{major}*
