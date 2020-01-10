@@ -112,7 +112,7 @@ IBus gtk module.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 %configure \
