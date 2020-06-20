@@ -10,12 +10,13 @@
 Summary:	A next generation input framework
 Name:		ibus
 Version:	1.5.22
-Release:	1
+Release:	2
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
 Source0:	https://github.com/ibus/ibus/releases/download/%{version}/%{name}-%{version}.tar.gz
 Source1:	ibus.macros
+Patch0:		ibus-HEAD.patch
 
 BuildRequires:	dconf
 BuildRequires:	gtk-doc
@@ -38,13 +39,12 @@ BuildRequires:	pkgconfig(vapigen)
 %if %{with python2}
 BuildRequires:	pkgconfig(python2)
 %endif
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	python-gi 
 Requires:	iso-codes
 Requires:	librsvg
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
-Requires:	pygtk2.0
 Requires:	python-notify
 Requires:	pyxdg
 Requires:	typelib(IBus)
