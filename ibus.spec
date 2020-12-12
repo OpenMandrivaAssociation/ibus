@@ -9,8 +9,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.22
-Release:	2
+Version:	1.5.23
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
