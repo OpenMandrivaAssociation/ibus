@@ -9,14 +9,13 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.22
-Release:	2
+Version:	1.5.23
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
 Source0:	https://github.com/ibus/ibus/releases/download/%{version}/%{name}-%{version}.tar.gz
 Source1:	ibus.macros
-Patch0:		ibus-HEAD.patch
 
 BuildRequires:	dconf
 BuildRequires:	gtk-doc
