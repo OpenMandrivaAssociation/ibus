@@ -44,7 +44,7 @@ Requires:	iso-codes
 Requires:	librsvg
 Requires:	python-gobject >= 2.15
 Requires:	python-dbus >= 0.83.0
-Requires:	python-notify
+Recommends:	python-notify
 Requires:	pyxdg
 Requires:	typelib(IBus)
 Suggests:	%{name}-gtk = %{version}
