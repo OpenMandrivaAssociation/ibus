@@ -10,7 +10,7 @@
 Summary:	A next generation input framework
 Name:		ibus
 Version:	1.5.25
-Release:	1
+Release:	2
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -191,7 +191,6 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 
 %files -n python-ibus
 %{py3_platsitedir}/gi/overrides/IBus.*
-%{py3_platsitedir}/gi/overrides/__pycache__
 
 %if %{with python2}
 %files -n python2-ibus
