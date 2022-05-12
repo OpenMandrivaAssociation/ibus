@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gtk4)
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
 %if %{with python2}
