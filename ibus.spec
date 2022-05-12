@@ -31,7 +31,7 @@ BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	pkgconfig(gtk4)
+#BuildRequires:	pkgconfig(gtk4)
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libsystemd)
@@ -118,12 +118,12 @@ IBus gtk module.
 %build
 %configure \
 	--enable-gtk3 \
-	--enable-gtk4 \
 	--disable-dbus-python-check \
 	--enable-vala=yes \
 	--disable-gconf \
 	--enable-dconf \
 	--enable-wayland
+#--enable-gtk4	
 
 %make_build
 
