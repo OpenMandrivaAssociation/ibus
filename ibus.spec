@@ -9,8 +9,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.25
-Release:	2
+Version:	1.5.26
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(gtk4)
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(pygobject-3.0)
@@ -116,6 +117,7 @@ IBus gtk module.
 %build
 %configure \
 	--enable-gtk3 \
+	--enable-gtk4 \
 	--disable-dbus-python-check \
 	--enable-vala=yes \
 	--disable-gconf \
