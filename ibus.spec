@@ -1,5 +1,3 @@
-%bcond_with python2
-
 %define api	1.0
 %define major	5
 %define libname %mklibname %{name} %{api} %{major}
@@ -16,6 +14,7 @@ License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
 Source0:	https://github.com/ibus/ibus/releases/download/%{version}/%{name}-%{version}.tar.gz
 Source1:	ibus.macros
+Patch0:		ibus-1.5.26-gtk4-linkage.patch
 
 BuildRequires:	dconf
 BuildRequires:	gtk-doc
@@ -31,25 +30,23 @@ BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
-#BuildRequires:	pkgconfig(gtk4)
+BuildRequires:	pkgconfig(gtk4)
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
-%if %{with python2}
-BuildRequires:	pkgconfig(python2)
-%endif
+BuildRequires:	unicode-cldr-annotations
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-gi 
+BuildRequires:	systemd-rpm-macros
 Requires:	iso-codes
 Requires:	librsvg
-Requires:	python-gobject >= 2.15
-Requires:	python-dbus >= 0.83.0
 Recommends:	python-notify
 Requires:	pyxdg
 Requires:	typelib(IBus)
 Suggests:	%{name}-gtk = %{version}
+Requires:	unicode-cldr-annotations
 
 %description
 IBus is a next generation input framework.
@@ -61,13 +58,6 @@ Conflicts:	ibus < 1.3.9-3
 
 %description -n %{libname}
 IBus shared libraries.
-
-%package -n python2-ibus
-Summary:	Python 2.x bindings to ibus
-Group:		System/Libraries
-
-%description -n python2-ibus
-Python 2.x bindings to ibus
 
 %package -n python-ibus
 Summary:	Python bindings to ibus
@@ -95,25 +85,33 @@ Obsoletes:	%{_lib}ibus1.0_5-devel < 1.5.2-1
 %description -n	%{devname}
 IBus development package: development libraries, header files, and the like.
 
-%package    gtk
-Summary:	IBus gtk module
+%package    gtk2
+Summary:	IBus gtk 2.x module
 Group:		System/Internationalization
 Requires:	ibus = %{version}
+%rename %{name}-gtk
 
-%description gtk
-IBus gtk module.
+%description gtk2
+IBus gtk 2.x module.
 
 %package    gtk3
-Summary:	IBus gtk3 module
+Summary:	IBus gtk 3.x module
 Group:		System/Internationalization
 Requires:	ibus = %{version}
 
 %description gtk3
-IBus gtk module.
+IBus gtk 3.x module.
+
+%package    gtk4
+Summary:	IBus gtk 4.x module
+Group:		System/Internationalization
+Requires:	ibus = %{version}
+
+%description gtk4
+IBus gtk 4.x module.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %configure \
@@ -122,8 +120,8 @@ IBus gtk module.
 	--enable-vala=yes \
 	--disable-gconf \
 	--enable-dconf \
-	--enable-wayland
-#--enable-gtk4	
+	--enable-wayland \
+	--enable-gtk4
 
 %make_build
 
@@ -138,8 +136,12 @@ echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/ibus-setup.desktop
 mkdir -p %{buildroot}%{_sysconfdir}/rpm/macros.d/
 install -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
-rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/ibus.desktop
 rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
+
+# Create a Plasma (and LXQt and Cutefish and ...) friendly version
+# of the systemd service...
+sed -e 's,generic sessions,Qt based desktops,;s,ibus-daemon,ibus-daemon --xim --desktop=kde --panel=/usr/lib64/libexec/kimpanel-ibus-panel --emoji-extension=/usr/bin/ibus-ui-emojier-plasma,' %{buildroot}%{_userunitdir}/org.freedesktop.IBus.session.generic.service >%{buildroot}%{_userunitdir}/org.freedesktop.IBus.session.KDE.service
+
 
 %preun
 %preun_uninstall_gconf_schemas ibus
@@ -163,10 +165,13 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %{_datadir}/dbus-1/services/org.freedesktop.portal.IBus.service
 %{_datadir}/ibus/*
 %{_iconsdir}/*/*/*/*
-%{_datadir}/man/man1/*
-%{_datadir}/man/man5/*
-%{_datadir}/man/man7/*
+%{_mandir}/man1/*
+%{_mandir}/man5/*
+%{_mandir}/man7/*
 %{_datadir}/gettext/its/ibus.*
+%{_sysconfdir}/xdg/Xwayland-session.d/10-ibus-x11
+%{_userunitdir}/org.freedesktop.IBus.session.generic.service
+%{_userunitdir}/org.freedesktop.IBus.session.KDE.service
 
 %files -n %{libname}
 %{_libdir}/libibus-%{api}.so.%{major}*
@@ -174,13 +179,18 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 %files -n %{girname}
 %{_libdir}/girepository-1.0/IBus-%{api}.typelib
 
-%files gtk
+%files gtk2
 %{_libdir}/gtk-2.0/*/immodules/*.so
 
 %files gtk3
 %{_libdir}/gtk-3.0/*/immodules/*.so
 %{_libexecdir}/ibus-ui-gtk*
 %{_libexecdir}/ibus-extension-gtk3
+%{_userunitdir}/gnome-session.target.wants/org.freedesktop.IBus.session.GNOME.service
+%{_userunitdir}/org.freedesktop.IBus.session.GNOME.service
+
+%files gtk4
+%{_libdir}/gtk-4.0/*/immodules/libim-ibus.so
 
 %files -n %{devname}
 %{_includedir}/ibus-1.0
@@ -194,9 +204,3 @@ rm -rf %{buildroot}%{py3_platsitedir}/gi/overrides/__pycache__
 
 %files -n python-ibus
 %{py3_platsitedir}/gi/overrides/IBus.*
-
-%if %{with python2}
-%files -n python2-ibus
-%{py2_platsitedir}/gi/overrides/IBus.*
-%exclude %{py2_platsitedir}/gi/overrides/__pycache__
-%endif

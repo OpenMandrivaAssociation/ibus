@@ -1,0 +1,11 @@
+diff -up ibus-1.5.26/client/gtk4/Makefile.am.omv~ ibus-1.5.26/client/gtk4/Makefile.am
+--- ibus-1.5.26/client/gtk4/Makefile.am.omv~	2022-07-31 22:57:18.768004491 +0200
++++ ibus-1.5.26/client/gtk4/Makefile.am	2022-07-31 22:57:32.936074864 +0200
+@@ -48,6 +48,7 @@ libim_ibus_la_LIBADD = \
+ 	@GTK4_LIBS@ \
+ 	@DBUS_LIBS@ \
+ 	$(libibus) \
++	-lX11 \
+ 	$(NULL)
+ libim_ibus_la_LDFLAGS = \
+ 	-avoid-version \
