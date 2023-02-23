@@ -7,7 +7,7 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.27
+Version:	1.5.28
 Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
