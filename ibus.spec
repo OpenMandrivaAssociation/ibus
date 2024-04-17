@@ -26,6 +26,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	unicode-cldr-annotations
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(dbus-python)
+BuildRequires:	pkgconfig(dbusmenu-glib-0.4)
 BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
