@@ -7,8 +7,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.28
-Release:	2
+Version:	1.5.29
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -130,7 +130,7 @@ IBus gtk 4.x module.
 %find_lang %{name}10
 
 # install .desktop files
-echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/ibus-setup.desktop
+echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/org.freedesktop.IBus.Setup.desktop
 
 # install rpm macro
 mkdir -p %{buildroot}%{_sysconfdir}/rpm/macros.d/
