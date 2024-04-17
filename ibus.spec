@@ -20,6 +20,7 @@ BuildRequires:	dconf
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	iso-codes
+BuildRequires:	libx11-common
 BuildRequires:	vala
 BuildRequires:	vala-tools
 BuildRequires:	gettext-devel
