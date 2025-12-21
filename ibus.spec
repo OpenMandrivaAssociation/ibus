@@ -16,6 +16,11 @@ Source0:	https://github.com/ibus/ibus/releases/download/%{version}/%{name}-%{ver
 Source1:	ibus.macros
 Patch0:		ibus-1.5.26-gtk4-linkage.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	dconf
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
