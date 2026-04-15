@@ -7,8 +7,8 @@
 
 Summary:	A next generation input framework
 Name:		ibus
-Version:	1.5.29
-Release:	2
+Version:	1.5.33
+Release:	1
 Group:		System/Internationalization
 License:	GPLv2+
 Url:		https://github.com/ibus/ibus/
@@ -45,6 +45,8 @@ BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
+BuildRequires:	pkgconfig(wayland-server)
+BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	unicode-cldr-annotations
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-gi 
