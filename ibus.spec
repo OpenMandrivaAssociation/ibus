@@ -46,6 +46,7 @@ BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
 BuildRequires:	pkgconfig(wayland-server)
+BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	unicode-cldr-annotations
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-gi 
