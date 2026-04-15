@@ -45,6 +45,7 @@ BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(vapigen)
+BuildRequires:	pkgconfig(wayland-server)
 BuildRequires:	unicode-cldr-annotations
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-gi 
