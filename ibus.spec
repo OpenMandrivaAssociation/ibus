@@ -48,7 +48,7 @@ BuildRequires:	pkgconfig(vapigen)
 BuildRequires:	pkgconfig(wayland-server)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	unicode-cldr-annotations
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python-gi 
 BuildRequires:	systemd-rpm-macros
 Requires:	iso-codes
