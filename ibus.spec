@@ -125,6 +125,9 @@ IBus gtk 4.x module.
 %autosetup -p1
 
 %build
+# client/gtk4/Makefile.am is patched. The tarball's rules still call
+# automake-1.18, which is older than the system automake.
+autoreconf -fiv
 %configure \
 	--enable-gtk3 \
 	--disable-dbus-python-check \
